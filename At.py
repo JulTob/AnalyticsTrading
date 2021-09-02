@@ -7,6 +7,9 @@ Julio Toboso
 
 
 # imports
+import math
+from datetime import datetime
+
 
 
 # Analitics Functions
@@ -25,4 +28,14 @@ def underaverage ( uvg, avg, val, n = 1000000):
      uvg = (( uvg * n ) + val ) / (n + 1) 
   return uvg
 
+def trendverage ( tvg, avg, val,  n = 1000000):
+  tvg = ( ( tvg * n ) + ( val - avg ) ) / (n+1)
+  return tvg
 
+pi = math.pi
+def freqverage ( f, fvgRe, fvgIm, val, n = int(datetime.now()) ):
+  print(n)
+  fvgRe = fvgRe + val * cos ( 2 * pi * f * n )
+  fvgIm = fvgIm + val * sin ( -2 * pi * f * n )
+  return fvgRe, fvgIm
+  
