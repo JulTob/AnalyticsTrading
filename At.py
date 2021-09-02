@@ -8,7 +8,7 @@ Julio Toboso
 
 # imports
 import math
-from datetime import datetime
+from time
 
 
 
@@ -33,9 +33,18 @@ def trendverage ( tvg, avg, val,  n = 1000000):
   return tvg
 
 pi = math.pi
-def freqverage ( f, fvgRe, fvgIm, val, n = int(datetime.now()) ):
+def freqverage_complex ( f, fvgRe, fvgIm, val, n = int(time.time() ) ):
   print(n)
   fvgRe = fvgRe + val * cos ( 2 * pi * f * n )
   fvgIm = fvgIm + val * sin ( -2 * pi * f * n )
   return fvgRe, fvgIm
   
+def fourier ( T, fvgRe, fvgIm, val, n = int(datetime.now()) ):
+  Re, Im = freqverage_complex ( 1/T, fvgRe, fvgIm, val)
+  Mod = sqrt ( Re**2 + Im**2 )
+  atn = atan( Im / Re) 
+  cuadrant = atn * 4 / pi
+  Delay = atn * T / (2 * pi)
+  return Mod, Delay, cuadrant
+
+#def FreqAnalysis 
