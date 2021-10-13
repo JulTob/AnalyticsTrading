@@ -3,12 +3,22 @@ Code for market analysis.
 
 Julio Toboso
 """
+# virtual env
+mkvirtualenv -p $(which python3) bitcoin_notifications
+workon bitcoin_notifications  # To activate the virtual environment
 
+#installs
+pip install requests==2.18.4  # We only need the requests package
 
 
 # imports
 import math
 from time
+#from binance.websockets import BinanceSocketManager
+#from binance.client import Client
+
+import requests
+
 
 
 
@@ -48,3 +58,13 @@ def fourier ( T, fvgRe, fvgIm, val, n = int(datetime.now()) ):
   return Mod, Delay, cuadrant
 
 #def FreqAnalysis 
+
+
+
+BITCOIN_API_URL = 'https://api.coinmarketcap.com/v1/ticker/bitcoin/'
+def get_latest_bitcoin_price():
+    response = requests.get(BITCOIN_API_URL)
+    response_json = response.json()
+    # Convert the price to a floating point number
+    return float(response_json[0]['price_usd'])
+
